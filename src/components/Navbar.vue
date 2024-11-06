@@ -7,13 +7,12 @@
                 <a class="navbar-brand" href="#">My VueBar</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li v-for="(page,index) in pages" class="nav-item" :key="index">
-                    <a 
-                    class="nav-link activePage==index ? 'active'" 
-                    aria-current="page" 
-                    :href="page.link.url"
-                    :title="`This link will go to the ${page.link.text} page`"
-                    @click.prevent="navLinkClick(index)"
-                    >{{ page.link.text }}</a>
+                        <navbar-link
+                            :page="page"
+                            :isActive="activePage === index"
+                            @click.prevent="navLinkClick(index)"
+                        ></navbar-link>
+
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -23,14 +22,18 @@
                     >Toggle</button>
                 </form>
             </div>
-            </nav> 
+        </nav> 
 
 </template>
 
 
 <script>
+import NavbarLink from './NavbarLink.vue';
 
 export default{
+    components:{
+        NavbarLink
+    },
             props: ['pages', 'activePage','navLinkClick'],
             data(){
                 return{

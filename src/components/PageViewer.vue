@@ -11,8 +11,8 @@
 <script>
     export default{
         props:['page'],
-        template:`
+        // template:`
                   
-        `
+        // `
     }
 </script>
