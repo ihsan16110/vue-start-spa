@@ -31,10 +31,7 @@
 <script>
 
 export default{
-    
             props: ['pages', 'activePage','navLinkClick'],
-        
-
             data(){
                 return{
                      theme:'light',
