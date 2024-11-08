@@ -24,28 +24,26 @@ export default {
         PageViewer,
         NavbarLink
     },
-        data() {
-                return {
-                    activePage: 0,
-                    pages:[
-                        {
-                            link: {text:'Home',url:'index.html'},
-                            pageTitle:'Home Page',
-                            content: 'This is the Home Content'
-                        },
-                        {
-                            link: {text:'About',url:'about.html'},
-                            pageTitle:'About Page',
-                            content: 'This is the About Content'
-                        },
-                        {
-                            link: {text:'Contact',url:'contact.html'},
-                            pageTitle:'Contact Page',
-                            content: 'This is the Contact Content'
-                        }
-                    ]
+    created(){
+        this.getPages();
+    },
+
+    data() {
+            return {
+                activePage: 0,
+                pages: []
                     
-                };
-                },
-        }
+            
+            };
+    },
+    methods:{
+            async getPages(){
+                    let res = await fetch('pages.json')
+                    let data = await res.json();
+
+                    this.pages = data;
+                }
+
+            }
+    }
 </script>
