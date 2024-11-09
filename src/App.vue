@@ -5,9 +5,11 @@
        :nav-link-click="(index) => activePage = index">
     </navbar>
 
-    <div v-show="flase"> hide this content
+    <div v-show="flase"> hide this content</div>
 
-    </div>
+    <create-page
+         :page-created="pageCreated"
+    ></create-page>
 
     <page-viewer 
         v-if="pages.length > 0"
@@ -21,13 +23,15 @@
 import Navbar from './components/Navbar.vue';
 import PageViewer from './components/PageViewer.vue';
 import NavbarLink from './components/NavbarLink.vue';
+import CreatePage from './components/CreatePage.vue';
  
 
 export default {
     components:{
         Navbar,
         PageViewer,
-        NavbarLink
+        NavbarLink,
+        CreatePage
     },
     created(){
         this.getPages();
@@ -47,6 +51,9 @@ export default {
                     let data = await res.json();
 
                     this.pages = data;
+                },
+                pageCreated(pageObj){
+                    console.log(pageObj)
                 }
 
             }
