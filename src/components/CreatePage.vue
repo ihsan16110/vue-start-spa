@@ -1,31 +1,74 @@
 
 <template>
-    <div class="container mb-3">
+    <!-- <div class="container mb-3"> -->
 
-        <form action="">
-            <div class="mb-3">
-                <label for="" class="form-label">
-                    Page Title
-                </label>
-                <input 
-                    type="text"
-                    class="form-control"
-                    v-model="pageTitle"
-                />
+        <form action="" class="container mb-3">
+            <div class="row">
 
+                    <div class="col-md-8">
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">
+                                Page Title
+                            </label>
+                            <input 
+                                type="text"
+                                class="form-control"
+                                v-model="pageTitle"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">
+                                Content
+                            </label>
+                            <textarea 
+                                type="text"
+                                class="form-control"
+                                rows="5"
+                                v-model="content"
+                            ></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">
+                                Link TEXT
+                            </label>
+                            <input 
+                                type="text"
+                                class="form-control"
+                                v-model="linkText"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">
+                                Link URL
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="linkUrl"
+                            >
+                        </div>
+                        <div class="row mb-3">
+                        
+                            <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label" for="gridCheck1">
+                                        Published
+                                    </label>
+                            </div>
+                        </div>
+                
+                    </div>
+            
             </div>
-            <div class="mb-3">
-                <label for="" class="form-label">
-                    Content
-                </label>
-                <textarea 
-                    type="text"
-                    class="form-control"
-                    rows="5"
-                    v-model="content"
-
-                ></textarea>
-            </div>
+           
             <div class="mb-3">
                 <button
                     class="btn btn-primary"
@@ -34,7 +77,7 @@
             </div>
         </form>
 
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>
@@ -43,7 +86,9 @@ export default{
     data(){
         return{
             PageTitle:'',
-            content:''
+            content:'',
+            linkText:'',
+            linkUrl:''
         }
     }
 }</script>
