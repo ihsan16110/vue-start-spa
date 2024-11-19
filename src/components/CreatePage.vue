@@ -58,7 +58,7 @@
                         <div class="row mb-3">
                         
                             <div class="form-check">
-                                    <input class="form-check-input" type="checkbox">
+                                    <input class="form-check-input" type="checkbox" v-model="published">
                                     <label class="form-check-label" for="gridCheck1">
                                         Published
                                     </label>
@@ -72,7 +72,8 @@
             <div class="mb-3">
                 <button
                     class="btn btn-primary"
-                    @click.prevent="pageCreated({pageTitle,content})"
+                    :disabled="isFormInvalid"
+                     @click.prevent="submitForm"
                 >Create Page</button>
             </div>
         </form>
@@ -88,7 +89,34 @@ export default{
             PageTitle:'',
             content:'',
             linkText:'',
-            linkUrl:''
+            linkUrl:'',
+            published: true
         }
-    }
+    },
+        methods:{
+            submitForm(event){
+
+                if(!this.pageTitle || !this.content || !this.linkText || !this.linkUrl) {
+                    alert('Please fill the form properly.');
+                    return;
+                }
+                this.pageCreated({
+                    pageTitle:this.pageTitle,
+                    content:this.content,
+                    link:{
+                        text:this.linkText,
+                        url:this.linkUrl
+                    },
+                    published: this.published
+                });
+
+                    this.PageTitle = '';
+                    this.content = '';
+                    this.linkText = '';
+                    this.linkUrl = '';
+                    this.published = true;
+                    }
+        }
+    
+
 }</script>
