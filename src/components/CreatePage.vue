@@ -80,10 +80,14 @@
 
     <!-- </div> -->
 </template>
-
 <script>
 export default{
     props:['pageCreated'],
+    computed:{
+        isFormInvalid(){
+            return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl;
+        }
+    },
     data(){
         return{
             PageTitle:'',
@@ -101,11 +105,11 @@ export default{
                     return;
                 }
                 this.pageCreated({
-                    pageTitle:this.pageTitle,
-                    content:this.content,
+                    pageTitle: this.pageTitle,
+                    content: this.content,
                     link:{
-                        text:this.linkText,
-                        url:this.linkUrl
+                        text: this.linkText,
+                        url: this.linkUrl
                     },
                     published: this.published
                 });
@@ -115,8 +119,18 @@ export default{
                     this.linkText = '';
                     this.linkUrl = '';
                     this.published = true;
-                    }
+            }
+        },
+
+        watch:{
+            pageTitle(newTitle, oldTitle){
+                if(this.linkText === oldTitle){
+                    this.linkText = newTitle;
+                }
+
+            }
         }
     
 
-}</script>
+}
+</script>
