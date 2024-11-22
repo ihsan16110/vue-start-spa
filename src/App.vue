@@ -5,10 +5,10 @@
        :nav-link-click="(index) => activePage = index">
     </navbar>
 
-    <div v-show="flase"> hide this content</div>
+    <div v-show="false"> hide this content</div>
 
     <create-page
-         :page-created="pageCreated"
+         @page-created="pageCreated"
     ></create-page>
 
     <page-viewer 
@@ -41,8 +41,6 @@ export default {
             return {
                 activePage: 0,
                 pages: []
-                    
-            
             };
     },
     methods:{
@@ -52,7 +50,7 @@ export default {
 
                     this.pages = data;
                 },
-                pageCreated(pageObj){
+            pageCreated(pageObj){
                     // console.log(pageObj)
                     this.pages.push(pageObj);
                 }

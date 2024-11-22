@@ -82,43 +82,60 @@
 </template>
 <script>
 export default{
-    props:['pageCreated'],
+    // props:['pageCreated'],
+    // emits: ['pageCreated'],
+    emits:{
+            pageCreated({pageTitle,content,link}){
+                if(!pageTitle){
+                    return false;
+                }
+                if(!content){
+                    return false;
+
+                }   
+                if(!link || !link.text || !link.url){
+                    return false;
+                }             
+                return true;
+            }
+    },
     computed:{
-        isFormInvalid(){
+        isFormInvalid() {
             return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl;
         }
     },
     data(){
         return{
-            PageTitle:'',
-            content:'',
-            linkText:'',
-            linkUrl:'',
+            pageTitle: '',
+            content: '',
+            linkText: '',
+            linkUrl: '',
             published: true
         }
     },
-        methods:{
-            submitForm(event){
-
-                if(!this.pageTitle || !this.content || !this.linkText || !this.linkUrl) {
+    methods: {
+        submitForm() {
+            console.log('Submit form triggered');
+            if (!this.pageTitle || !this.content || !this.linkText || !this.linkUrl) {
                     alert('Please fill the form properly.');
                     return;
-                }
-                this.pageCreated({
-                    pageTitle: this.pageTitle,
-                    content: this.content,
-                    link:{
-                        text: this.linkText,
-                        url: this.linkUrl
-                    },
-                    published: this.published
-                });
+            }
 
-                    this.PageTitle = '';
-                    this.content = '';
-                    this.linkText = '';
-                    this.linkUrl = '';
-                    this.published = true;
+            this.$emit('pageCreated',{
+                pageTitle: this.pageTitle,
+                content: this.content,
+                link:{ 
+                    text: this.linkText,
+                    url: this.linkUrl
+                },
+                published: this.published
+            });
+
+                this.pageTitle = '';
+                this.content = '';
+                this.linkText = '';
+                this.linkUrl = '';
+                this.published = true;
             }
         },
 
