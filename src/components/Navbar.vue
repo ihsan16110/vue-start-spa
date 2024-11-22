@@ -6,14 +6,16 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">My VueBar</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
+                    
                         <navbar-link
+                            v-for="(page, index) in publishedPages" class="nav-item" :key="index"
                             :page="page"
+                            :index="index"
                             :isActive="activePage === index"
-                            @click.prevent="navLinkClick(index)"
+                            @actived="$emit('actived')"
                         ></navbar-link>
 
-                    </li>
+                    
                 </ul>
                 <form class="d-flex">
                     <button 
@@ -43,7 +45,7 @@ export default{
         }
     },
 
-    props: ['pages', 'activePage','navLinkClick'],
+    props: ['pages', 'activePage'],
     data(){
         return{
                 theme:'light',

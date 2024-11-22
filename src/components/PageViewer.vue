@@ -2,8 +2,8 @@
 <template>
 
     <div class="container">
-            <h1 class="emphasize">{{page.pageTitle}}</h1>
-            <p>{{page.content}}</p>
+            <h1 class="emphasize">Page Title</h1>
+            <p>content</p>
     </div>
 
 </template>
