@@ -82,8 +82,6 @@
 </template>
 <script>
 export default{
-    // props:['pageCreated'],
-    // emits: ['pageCreated'],
     emits:{
             pageCreated({pageTitle,content,link}){
                 if(!pageTitle){
