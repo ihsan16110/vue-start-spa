@@ -1,19 +1,22 @@
 <template>
     <li>
-        <a 
+        <router-link
+            :to ="`/${index}`"
             class="nav-link"
             :class="activeClasses"
             aria-current="page" 
-            :href="page.link.url"
-            :title="`This link will goes to the ${page.link.text} page`" 
-            @click..prevent="$bus.$emit('navbarLinkActived',index)"
-            >{{ page.link.text }}</a>
+    
+            :title="`This link goes to the ${page.link.text} page`" 
+     
+            >{{ page.link.text }}</router-link>
         <!-- @click.prevent="navLinkClick(index)" -->
 
     </li>
 </template>
 
 <script>
+// import { RouterLink } from 'vue-router';
+
 export default {
     props:['page','index', 'isActive'],
     computed:{

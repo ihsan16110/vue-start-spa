@@ -1,9 +1,9 @@
 
 <template>
 
-    <div class="container">
-            <h1 class="emphasize">Page Title</h1>
-            <p>{{$route.params.index}}</p>
+    <div v-if="page" class="container">
+            <h1 class="emphasize">{{ page.pageTitle }}</h1>
+            <p>{{page.content}}</p>
     </div>
 
 </template>
@@ -24,7 +24,13 @@
         // }
 
         created(){
-        console.log(this.$route.params);
+        // console.log(this.$route.params);
+        this.page  = this.$pages.getSinglePage(this.$route.params.index);
+        },
+        data(){
+            return {
+                page :  null
+            };
         }
        
     }
