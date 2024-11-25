@@ -1,9 +1,5 @@
 <template>
-   <navbar
-       :pages="pages"
-       :active-page="activePage"
-    >
-    </navbar>
+   <navbar></navbar>
 
     <router-view></router-view>
 
@@ -39,15 +35,15 @@ export default {
     },
     created(){
         this.getPages();
-        this.$bus.$on('navbarLinkActived',(index) =>{
-            this.activePage=index;
+        // this.$bus.$on('navbarLinkActived',(index) =>{
+        //     this.activePage=index;
 
-        });
+        // });
     },
 
     data() {
             return {
-                activePage: 0,
+                // activePage: 0,
                 pages: []
             };
     },

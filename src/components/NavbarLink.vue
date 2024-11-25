@@ -3,7 +3,7 @@
         <router-link
             :to ="`/${index}`"
             class="nav-link"
-            :class="activeClasses"
+            active-class="active emphasizer"
             aria-current="page" 
     
             :title="`This link goes to the ${page.link.text} page`" 
