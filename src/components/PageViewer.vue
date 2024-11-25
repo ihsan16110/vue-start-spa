@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    export default{
+export default{
         // props:{
         //     page : {
         //         type:Object,
@@ -22,18 +22,29 @@
         //         }
         //     }
         // }
-
+        props: ['index'],
         created(){
         // console.log(this.$route.params);
-        this.page  = this.$pages.getSinglePage(this.$route.params.index);
+            this.page  = this.$pages.getSinglePage(this.$route.params.index);
+            // this.$watch(() => this.$route.params, (newParams , prevParams)  => {
+            //             this.page =this.$pages.getSinglePage(newParams,index);
+
+
+        // });
         },
         data(){
             return {
                 page :  null
             };
-        }
+        },
+        watch: {
+            index(newIndex, oldIndex){
+                this.page= this.$pages.getSinglePage(newIndex);
+            }
+        } 
+      
        
-    }
+}
 </script>
 
 <style>
