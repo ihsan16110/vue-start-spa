@@ -15,6 +15,7 @@ export default{
         created(){
             this.page  = this.$pages.getSinglePage(this.$route.params.index);
             
+            
         },
         data(){
             return {
