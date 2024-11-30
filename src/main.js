@@ -8,8 +8,13 @@ import $pages from './data';
 const app= createApp(App)
 
 app.use(router);
-app.config.globalProperties.$bus = $bus;
+
+// app.use(router);
+// app.config.globalProperties.$bus = $bus;
 // app.config.globalProperties.$pages = $pages;
+
+
+app.provide('$bus', $bus);
 app.provide('$pages', $pages);
 
 app.mount('#app');
