@@ -3,19 +3,6 @@
 
     <router-view></router-view>
 
-    <!-- <div v-show="false"> hide this content</div>
-
-    <page-viewer 
-        v-if="pages.length > 0"
-        :page="pages[activePage]">
-    </page-viewer>
-
-    <create-page
-         @page-created="pageCreated"
-    ></create-page> -->
-
-    
-    
 </template>
 
 <script>
@@ -28,22 +15,16 @@ import CreatePage from './components/CreatePage.vue';
 
 export default {
     components:{
-        Navbar,
-        PageViewer,
-        NavbarLink,
-        CreatePage
+        Navbar
+     
     },
     created(){
         this.getPages();
-        // this.$bus.$on('navbarLinkActived',(index) =>{
-        //     this.activePage=index;
-
-        // });
+     
     },
 
     data() {
             return {
-                // activePage: 0,
                 pages: []
             };
     },
@@ -55,7 +36,6 @@ export default {
                     this.pages = data;
                 },
             pageCreated(pageObj){
-                    // console.log(pageObj)
                     this.pages.push(pageObj);
                 }
 
