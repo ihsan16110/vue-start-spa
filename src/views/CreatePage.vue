@@ -30,10 +30,7 @@
                         </div>
                     </div>
 
-
                     <div class="col">
-
-
                         <div class="mb-3">
                             <label for="" class="form-label">
                                 Link TEXT
@@ -42,17 +39,6 @@
                                 type="text"
                                 class="form-control"
                                 v-model="linkText"
-                            >
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="" class="form-label">
-                                Link URL
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                v-model="linkUrl"
                             >
                         </div>
                         <div class="row mb-3">
@@ -80,72 +66,54 @@
 
     <!-- </div> -->
 </template>
-<script>
-export default{
-    emits:{
-            pageCreated({pageTitle,content,link}){
-                if(!pageTitle){
-                    return false;
-                }
-                if(!content){
-                    return false;
 
-                }   
-                if(!link || !link.text || !link.url){
-                    return false;
-                }             
-                return true;
-            }
-    },
-    computed:{
-        isFormInvalid() {
-            return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl;
-        }
-    },
-    data(){
-        return{
-            pageTitle: '',
-            content: '',
-            linkText: '',
-            linkUrl: '',
-            published: true
-        }
-    },
-    methods: {
-        submitForm() {
-            console.log('Submit form triggered');
-            if (!this.pageTitle || !this.content || !this.linkText || !this.linkUrl) {
-                    alert('Please fill the form properly.');
-                    return;
-            }
 
-            this.$emit('pageCreated',{
-                pageTitle: this.pageTitle,
-                content: this.content,
-                link:{ 
-                    text: this.linkText,
-                    url: this.linkUrl
-                },
-                published: this.published
-            });
+<script setup>
+import {inject,ref,computed,watch} from 'vue';
+import { useRouter } from 'vue-router';
 
-                this.pageTitle = '';
-                this.content = '';
-                this.linkText = '';
-                this.linkUrl = '';
-                this.published = true;
-            }
+
+const bus =inject('$bus');
+const pages = inject('$pages');
+const router = useRouter();
+
+let pageTitle = ref('');
+let content = ref('');
+let linkText= ref('');
+let published = ref('true');
+
+function submitForm() {
+
+    if (!pageTitle || !content || !linkText ) {
+            alert('Please fill the form properly.');
+            return;
+    }
+
+    let newPage={
+        pageTitle: pageTitle.value,
+        content: content.value,
+        link:{ 
+            text: linkText.value,
+       
         },
+        published:published.value
+    };
 
-        watch:{
-            pageTitle(newTitle, oldTitle){
-                if(this.linkText === oldTitle){
-                    this.linkText = newTitle;
-                }
+    pages.addPage(newPage);
 
-            }
-        }
-    
+    bus.$emit('page-created',newPage);
+    router.push({path:'/pages'});
+
 
 }
+const isFormInvalid = computed(() => !pageTitle || !content || !linkText );
+
+watch(pageTitle,(newTitle, oldTitle) => {
+                if(linkText.value === oldTitle){
+                    linkText.value = newTitle;
+                }
+
+            });
+
 </script>
+
