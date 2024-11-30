@@ -8,9 +8,8 @@
 <script>
 
 import Navbar from './components/Navbar.vue';
-import PageViewer from './components/PageViewer.vue';
 import NavbarLink from './components/NavbarLink.vue';
-import CreatePage from './components/CreatePage.vue';
+import CreatePage from './views/CreatePage.vue';
  
 
 export default {
