@@ -10,27 +10,11 @@
 
 <script>
 export default{
-        // props:{
-        //     page : {
-        //         type:Object,
-        //         default(rawProps){
-        //             return{
-        //                 pageTitle: '',
-        //                 content: ''
-
-        //             }
-        //         }
-        //     }
-        // }
         props: ['index'],
+        inject:  ['$pages'],
         created(){
-        // console.log(this.$route.params);
             this.page  = this.$pages.getSinglePage(this.$route.params.index);
-            // this.$watch(() => this.$route.params, (newParams , prevParams)  => {
-            //             this.page =this.$pages.getSinglePage(newParams,index);
-
-
-        // });
+            
         },
         data(){
             return {
